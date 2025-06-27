@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Puzzle Solver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calendar Puzzle Solver</h1>
+            <div class="controls">
+                <div class="date-selector">
+                    <label for="month">Month:</label>
+                    <select id="month">
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                    
+                    <label for="day">Day:</label>
+                    <select id="day">
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                    
+                    <label for="weekday">Weekday:</label>
+                    <select id="weekday">
+                        <option value="0">Monday</option>
+                        <option value="1">Tuesday</option>
+                        <option value="2">Wednesday</option>
+                        <option value="3">Thursday</option>
+                        <option value="4">Friday</option>
+                        <option value="5">Saturday</option>
+                        <option value="6">Sunday</option>
+                    </select>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="reset-btn">Reset Puzzle</button>
+                    <button id="solve-btn">Auto Solve</button>
+                    <button id="hint-btn">Get Hint</button>
+                    <button id="save-btn">Save Layout</button>
+                </div>
+                
+                <div class="board-id-display">
+                    <label for="board-id">Board State ID:</label>
+                    <div class="board-id-container">
+                        <input type="text" id="board-id" readonly value="0000000000000000000000000000000000000000">
+                        <button id="copy-board-id" title="Copy Board ID">📋</button>
+                    </div>
+                    <div class="board-id-info">
+                        <small>Real-time encoding: 10 pieces × 4 digits (Placed|Row|Orientation|Col)</small>
+                    </div>
+                </div>
+                
+                <div class="speed-control">
+                    <label for="solve-speed">Solution Speed:</label>
+                    <div class="speed-slider-container">
+                        <input type="range" id="solve-speed" min="0" max="3" value="1" step="1">
+                        <div class="speed-labels">
+                            <span>Slow<br><small>Every step</small></span>
+                            <span>Medium<br><small>1/10 steps</small></span>
+                            <span>Fast<br><small>1/100 steps</small></span>
+                            <span>Ultra<br><small>1/1000 steps</small></span>
+                        </div>
+                    </div>
+                    <div id="speed-display" class="speed-display">Medium Speed (1/10 visualizations)</div>
+                </div>
+                
+
+                
+                <div class="solver-controls" id="solver-controls" style="display: none;">
+                    <div class="solver-info">
+                        <div id="solve-progress">Ready to solve...</div>
+                        <div id="solve-stats"></div>
+                    </div>
+                    <div class="solver-buttons">
+                        <button id="solve-pause-btn">Pause</button>
+                        <button id="solve-reset-btn">Reset to Start</button>
+                        <button id="solve-back-btn" disabled>← Back</button>
+                        <button id="solve-forward-btn" disabled>Forward →</button>
+                        <button id="solve-stop-btn">Stop Solving</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="board-container">
+                    <div id="game-board" class="board"></div>
+                    <div id="status" class="status"></div>
+                </div>
+                
+                <div class="pieces-container">
+                    <h3>Puzzle Pieces</h3>
+                    <div id="pieces-area" class="pieces-area"></div>
+                    <div class="piece-controls">
+                        <button id="rotate-btn">Rotate Selected (R)</button>
+                        <button id="flip-btn">Flip Selected (F)</button>
+                    </div>
+                    <div class="keyboard-hints">
+                        <small>Select or drag a piece and use: <strong>R</strong> = Rotate, <strong>F</strong> = Flip, <strong>ESC</strong> = Deselect</small>
+                    </div>
+                </div>
+                
+                <div class="saves-container">
+                    <h3>Saved Layouts</h3>
+                    <div id="saves-area" class="saves-area">
+                        <div class="no-saves">No saved layouts yet</div>
+                    </div>
+                    <button id="clear-saves-btn" class="clear-saves-btn">Clear All Saves</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html> 
